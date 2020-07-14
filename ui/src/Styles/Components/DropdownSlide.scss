@@ -13,7 +13,7 @@ $duration: 0.15s;
   transform-origin: top;
   transition-property: transform, opacity;
   transition-duration: $duration;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
 }
 
 .components-animation-slide-exit {
@@ -26,5 +26,5 @@ $duration: 0.15s;
   transform: scaleY(0);
   transition-property: transform, opacity;
   transition-duration: $duration;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in;
 }

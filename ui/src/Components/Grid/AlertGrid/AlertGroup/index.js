@@ -12,6 +12,7 @@ import { Settings } from "Stores/Settings";
 import { AlertStore } from "Stores/AlertStore";
 import { SilenceFormStore } from "Stores/SilenceFormStore";
 import { BackgroundClassMap } from "Common/Colors";
+import { DropdownSlide } from "Components/Animations/DropdownSlide";
 import { TooltipWrapper } from "Components/TooltipWrapper";
 import { GroupHeader } from "./GroupHeader";
 import { Alert } from "./Alert";
@@ -180,7 +181,13 @@ const AlertGroup = ({
           setIsMenuOpen={setIsMenuOpen}
           gridLabelValue={gridLabelValue}
         />
-        {isCollapsed ? null : (
+        <DropdownSlide
+          in={!isCollapsed}
+          appear={false}
+          onEntering={afterUpdate}
+          onExited={afterUpdate}
+          unmountOnExit
+        >
           <div className="card-body px-2 py-1 components-grid-alertgrid-card">
             <ul className="list-group">
               {group.alerts.slice(0, alertsToRender).map((alert) => (
@@ -222,7 +229,7 @@ const AlertGroup = ({
               ) : null}
             </ul>
           </div>
-        )}
+        </DropdownSlide>
         {isCollapsed === false && group.alerts.length > 1 ? (
           <GroupFooter
             group={group}

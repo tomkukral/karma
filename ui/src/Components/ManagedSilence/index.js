@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { APISilence } from "Models/API";
 import { AlertStore } from "Stores/AlertStore";
 import { SilenceFormStore, SilenceTabNames } from "Stores/SilenceFormStore";
+import { DropdownSlide } from "Components/Animations/DropdownSlide";
 import { SilenceComment } from "./SilenceComment";
 import { SilenceDetails } from "./SilenceDetails";
 
@@ -51,7 +52,13 @@ const ManagedSilence = ({
           collapseToggle={() => setShowDetails(!showDetails)}
         />
       </div>
-      {showDetails ? (
+      <DropdownSlide
+        in={showDetails}
+        appear={false}
+        onEntering={onDidUpdate}
+        onExited={onDidUpdate}
+        unmountOnExit
+      >
         <div className="card-body pt-0">
           <SilenceDetails
             cluster={cluster}
@@ -62,7 +69,7 @@ const ManagedSilence = ({
             isUpper={isNested}
           />
         </div>
-      ) : null}
+      </DropdownSlide>
     </div>
   );
 };
